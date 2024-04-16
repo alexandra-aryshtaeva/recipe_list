@@ -1,4 +1,7 @@
 <script setup>
+import { ref } from "vue";
+let seeIngredient = ref(false);
+let seeStep = ref(false);
 let recipe = {
   title: "MyRecipe",
   ingredientes: [
@@ -20,61 +23,116 @@ let recipe = {
   ],
   steps: ["cut stuff", "boil stuff", "season stuff"],
 };
+
+const ingredients = ["banana", "potatoes", "fish", "meat", "chorizo"];
+function showIngredient() {
+  seeIngredient.value = true;
+}
+
+function addToList(ingredient) {
+  // let length = ingredients.length;
+
+  // recipe.ingredientes.push(ingredients[length - 1]);
+  console.log(ingredient);
+}
+
+function showStep() {
+  seeStep.value = true;
+}
 </script>
 
 <template>
   <div class="wrapper">
     <h1>{{ recipe.title }}</h1>
 
-    <div class="ingredients">
-      Ingredients:
-      <li v-for="ingredient in recipe.ingredientes">
-        {{ ingredient.name }}: {{ ingredient.quantity }}
-        {{ ingredient.measure }}.
-      </li>
+    <div class="ingredientsWrapper">
+      <div class="ingredients">
+        Ingredients:
+        <li v-for="ingredient in recipe.ingredientes">
+          {{ ingredient.name }}: {{ ingredient.quantity }}
+          {{ ingredient.measure }}.
+        </li>
+
+        <button @click="showIngredient">Add ingredient</button>
+
+        <ul v-if="seeIngredient">
+          <li v-for="ingredient in ingredients" :key="ingredient.name">
+            <button @click="addToList(ingredient)">{{ ingredient }}</button>
+          </li>
+          <button @click="seeIngredient = false">exit</button>
+        </ul>
+      </div>
     </div>
 
-    <div class="steps">
-      Steps:
-      <li v-for="step in recipe.steps">{{ step }}</li>
+    <div class="stepsWrapper">
+      <div class="steps">
+        Steps:
+        <li v-for="step in recipe.steps">{{ step }}</li>
+
+        <button @click="showStep">Add step</button>
+
+        <ul v-if="seeStep">
+          <!-- TO REPLACE -->
+          <!-- <li v-for="ingredient in ingredients" :key="ingredient.name">
+          <button @click="addToList(ingredient)">{{ ingredient }}</button>
+        </li> -->
+          <button>new Steps</button>
+          <button @click="seeStep = false">exit</button>
+        </ul>
+      </div>
     </div>
   </div>
 </template>
 
-<!-- <style scoped>
+<style scoped>
+/* no styling body */
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
+  background-color: var(--beige);
+  text-align: center;
+}
+
+h1 {
+  padding: 32px;
+  margin: 0px;
+
+  font-family: "Kaushan Script";
+  font-weight: 600;
+  font-size: 64px;
+
+  color: var(--red);
+  border-bottom: 2px solid var(--red);
+  background-color: bisque;
+}
+
+.ingredientsWrapper {
+  height: 50vh;
+  border-bottom: 2px solid var(--red);
+  padding: 12px 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* .ingredients
+{
+
+} */
+.stepsWrapper {
+  height: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 0px;
+}
+/* .steps {
+  background-color: aqua;
+} */
 ul,
 li {
   list-style: none;
 }
-body {
-  --red: rgb(194, 87, 87);
-  margin: 0px;
-  padding: 0px;
-}
-main {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-content: center;
-}
-
-.wrapper {
-  border: solid var(--red) 4px;
-  border-radius: 8px;
-  padding: 16px;
-}
-h1 {
-  color: var(--red);
-  padding-bottom: 1px;
-  margin: 0px;
-}
-
-.ingredients {
-  border-bottom: 2px solid var(--red);
-  padding: 12px 0px;
-}
-.steps {
-  border-bottom: 2px solid var(--red);
-  padding: 12px 0px;
-}
-</style> -->
+</style>

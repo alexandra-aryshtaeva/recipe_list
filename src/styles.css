@@ -1,4 +1,11 @@
+:root {
+  --beige: rgb(255, 243, 229);
+  --red: #c25757;
+  /* --border:  */
+}
+
 .container {
-  max-width: 1280px;
+  max-width: 100%;
+  height: 100%;
   margin-inline: auto;
 }
