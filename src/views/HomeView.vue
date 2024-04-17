@@ -4,27 +4,30 @@ import { useRoute } from "vue-router";
 
 const route = useRoute();
 const recipes = [
-  { title: "Recipe Title", date: new Date() },
-  { title: "Recipe", date: new Date() },
-  { title: "Random Recipe", date: new Date() },
-  { title: "Title of Recipe", date: new Date() },
+  { title: "recipe title", date: new Date() },
+  { title: "recipe", date: new Date() },
+  { title: "random recipe", date: new Date() },
+  { title: "title of recipe", date: new Date() },
 ];
 </script>
 
 <template>
   <main>
+    <RouterLink v-if="route.path !== '/CreateRecipeView'" to="/CreateRecipeView"
+      >Create New Recipe</RouterLink
+    >
     <table>
       <thead>
         <tr>
-          <th>title</th>
-          <th>date</th>
+          <th>Title</th>
+          <th>Date</th>
         </tr>
       </thead>
 
       <tbody>
         <tr v-for="recipe in recipes">
           <td>
-            <RouterLink to="/recipe">{{ recipe.title }}</RouterLink>
+            <RouterLink to="/recipe">{{ recipe.title }} </RouterLink>
           </td>
           <td>{{ formatDate(recipe.date) }}</td>
         </tr>
@@ -37,12 +40,14 @@ const recipes = [
 table,
 td,
 th {
-  border: 1px solid #000000;
+  border: 1px solid var(--red);
   text-align: center;
 }
 
 thead {
-  background-color: #77ccb0;
+  font-weight: 700;
+  color: var(--red);
+  background-color: bisque;
 }
 
 table {

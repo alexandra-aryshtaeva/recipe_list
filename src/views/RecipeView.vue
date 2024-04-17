@@ -72,10 +72,6 @@ function showStep() {
         <button @click="showStep">Add step</button>
 
         <ul v-if="seeStep">
-          <!-- TO REPLACE -->
-          <!-- <li v-for="ingredient in ingredients" :key="ingredient.name">
-          <button @click="addToList(ingredient)">{{ ingredient }}</button>
-        </li> -->
           <button>new Steps</button>
           <button @click="seeStep = false">exit</button>
         </ul>
@@ -90,7 +86,6 @@ function showStep() {
 .wrapper {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   height: 100vh;
   background-color: var(--beige);
   text-align: center;
@@ -105,32 +100,32 @@ h1 {
   font-size: 64px;
 
   color: var(--red);
-  border-bottom: 2px solid var(--red);
+  border: 2px solid var(--red);
   background-color: bisque;
 }
 
 .ingredientsWrapper {
   height: 50vh;
-  border-bottom: 2px solid var(--red);
+  border: 2px solid var(--red);
   padding: 12px 0px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-/* .ingredients
-{
-
-} */
+.ingredients {
+  background-color: bisque;
+}
 .stepsWrapper {
+  border: 2px solid var(--red);
   height: 50vh;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 12px 0px;
 }
-/* .steps {
-  background-color: aqua;
-} */
+.steps {
+  background-color: bisque;
+}
 ul,
 li {
   list-style: none;
